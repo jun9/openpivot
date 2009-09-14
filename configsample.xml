@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bla:problem>
-	<bla:defaultaccumulation value="average"/>
-	<!--bla:defaultaccumulation value="number"/-->
-	<!--bla:defaultaccumulation value="sum"/-->
+<op:problem>
+	<op:defaultaccumulation value="average"/>
+	<!--op:defaultaccumulation value="number"/-->
+	<!--op:defaultaccumulation value="sum"/-->
 	
-	<bla:columnlist>
-		<bla:col id="nbemployees" accumulation="sum"/>
-		<bla:col id="profit"/>
-	</bla:columnlist>
+	<op:columnlist>
+		<op:col id="nbemployees" accumulation="sum"/>
+		<op:col id="profit"/>
+	</op:columnlist>
 	
-	<bla:rowsequence>
-		<bla:row id="year"/>
-		<bla:row id="sector"/>
-	</bla:rowsequence>
+	<op:rowsequence>
+		<op:row id="year"/>
+		<op:row id="sector"/>
+	</op:rowsequence>
 	
-	<bla:filterlist>
-		<bla:filter id="isnasdaq">
-			<bla:filtereditem id="true"/>
-		</bla:filter>		
-	</bla:filterlist>
-</bla:problem>
+	<op:filterlist>
+		<op:filter id="isnasdaq">
+			<op:filtereditem id="true"/>
+		</op:filter>		
+	</op:filterlist>
+</op:problem>
