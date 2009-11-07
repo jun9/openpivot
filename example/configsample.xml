@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<problem>
+	<defaultaccumulation value="number"/>
+	<!--defaultaccumulation value="number"/-->
+	<!--defaultaccumulation value="sum"/-->
+	
+	<columnlist>
+		<col id="NbEmployee" accumulation="average"/>
+		<col id="profit"/>
+	</columnlist>
+	
+	<rowsequence>
+		<row id="year"/>
+		<row id="sector"/>
+	</rowsequence>
+	
+	<filterlist>
+		<filter id="isnasdaq">
+			<filtereditem id="true"/>
+		</filter>		
+	</filterlist>
+ </problem>

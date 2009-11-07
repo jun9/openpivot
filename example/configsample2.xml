@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<problem>
+	<columnlist>
+		<col id="nbemployees" accumulation="sum"></col>
+		<col id="profit"/>
+	</columnlist>
+</problem>
