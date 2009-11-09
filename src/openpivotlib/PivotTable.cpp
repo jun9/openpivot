@@ -3,7 +3,7 @@ namespace op
 {
   PivotTable::PivotTable ()
   {
-
+    mDocumentMap.set_empty_key(string());
   }
 
   PivotTable::~PivotTable ()
@@ -13,13 +13,13 @@ namespace op
 
   Accumulator* PivotTable::getAccumulatorForKeyAndEntry(const string & key, const string & entryKey)
   {
-    std::cout << "Key " << key << std::endl;
+    //std::cout << "Key " << key << std::endl;
     Container::const_iterator finder = mDocumentMap.find(key);
     EntriesMap* entries = 0;
     if (finder == mDocumentMap.end())
     {
       entries = new EntriesMap();
-      //entries->set_empty_key(NULL);
+      entries->set_empty_key(string());
       mDocumentMap[key] = entries;
     } else
       entries = finder->second;

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <problem>
-	<defaultaccumulation value="number"/>
+	<defaultaccumulation value="sum"/>
 	<!--defaultaccumulation value="number"/-->
 	<!--defaultaccumulation value="sum"/-->
 	
 	<columnlist>
-		<col id="NbEmployee" accumulation="average"/>
+		<col id="NbEmployee" accumulation="sum"/>
 		<col id="profit"/>
 	</columnlist>
 	

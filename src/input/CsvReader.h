@@ -13,7 +13,8 @@
 #include <string>
 #include <map>
 #include "openpivotlib/OpenPivotContext.h"
-//#include <ext/hash_map>
+#include <google/dense_hash_map>
+#include <ext/hash_map>
 
 namespace op
 {
@@ -94,13 +95,13 @@ private:
   * @brief convenience TypeDef
   */
   //typedef dense_hash_map<const char*,int,Utils::Hash,Utils::eqstr> ReverseHeadersMap;
-  //typedef dense_hash_map<const char*,int,hash<const char*>,Utils::eqstr> ReverseHeadersMap;
+  //typedef google::dense_hash_map<string,int,Utils::Hash > ReverseHeadersMap;
   typedef std::map<string,int>  ReverseHeadersMap;
   
 private:
   char mSeparator;
   int mNbTokens;
-  char* mCurrentBuffer;
+  char *mCurrentBuffer;
   OpenPivotContext *mContext;
   string mFileName;
   vector<int> mPositions;

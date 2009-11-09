@@ -30,7 +30,6 @@ namespace op
   
   bool CsvWriter::dump()
   {
-    std::cout << "Dumping" << endl;
     ofstream stream (mFileName.c_str(), ios_base::out);
     if (!stream)
     {

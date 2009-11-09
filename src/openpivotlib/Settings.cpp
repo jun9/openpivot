@@ -80,7 +80,7 @@ void Settings::addRowForKey(const string & name)
     //std::cerr <<" success" ;
     mRows.push_back(name);
   }
-  std::cerr << std::endl;
+  //std::cerr << std::endl;
 
 }
 

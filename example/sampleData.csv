@@ -1,7 +1,7 @@
 company Name;year;NbEmployee;profit;sector
 Microsoft;2001;30000;1.5;IT
 Microsoft;2003;33001;1.5;IT
-Apple;2001;23001;1.5;IS
-Apple;2003;23001;1.5;IS
-Google;2001;43001;1.5;IP
-Google;2003;43001;1.5;IP
+Apple;2001;23001;1.5;IT
+Apple;2003;23001;1.5;IT
+Google;2001;43001;1.5;IT
+Google;2003;43001;1.5;IT

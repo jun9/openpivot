@@ -2,6 +2,7 @@
 #define UTILS_H_2K54SQXP
 #include <string>
 #include <google/dense_hash_map>
+#include <ext/hash_map>
 
 namespace op
 {
@@ -38,11 +39,11 @@ namespace op
     /**
     * @brief Utility struct for hash maps
     */
-    struct SpecialHash
+    struct HashString
     {
-      size_t operator()(const char * ) const;
+      size_t operator()(const string & ) const;
     };
-    typedef hash<const char*> Hash;
+    typedef HashString Hash;
     
     /**
     *@brief comparator for maps
@@ -78,5 +79,16 @@ namespace op
   
   
 } /* op */
+
+// namespace std                                                                                 
+// {                                                                                             
+//   template<> struct hash< std::string >                                                       
+//   {                                                                                           
+//     size_t operator()( const std::string& x ) const                                           
+//     {                                                                                         
+//       return hash< const char* >()( x.c_str() );                                              
+//     }                                                                                         
+//   };                                                                                          
+// }
 
 #endif /* end of include guard: UTILS_H_2K54SQXP */

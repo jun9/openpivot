@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		1F0A7AE710A713B7005E6F80 /* openpivot */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = openpivot; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F2B169F10737E8300F56D39 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Settings.h; path = src/openpivotlib/Settings.h; sourceTree = "<group>"; };
 		1F2B16A010737E8300F56D39 /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Settings.cpp; path = src/openpivotlib/Settings.cpp; sourceTree = "<group>"; };
 		1F2B16A41073806500F56D39 /* AggregationColumn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AggregationColumn.cpp; path = src/openpivotlib/AggregationColumn.cpp; sourceTree = "<group>"; };
@@ -25,6 +26,16 @@
 		1FFDF389106FC0A100680DE2 /* XMLConfigReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLConfigReader.h; path = src/frontend/XMLConfigReader.h; sourceTree = "<group>"; };
 		1FFDF38B106FC0B500680DE2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/app/main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1F0A7AE510A713B7005E6F80 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		08FB7794FE84155DC02AAC07 /* openpivot */ = {
@@ -50,6 +61,7 @@
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				1F0A7AE710A713B7005E6F80 /* openpivot */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,22 +113,24 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXLegacyTarget section */
-		1FFDF38C106FC0D900680DE2 /* openpivot */ = {
-			isa = PBXLegacyTarget;
-			buildArgumentsString = "$(ACTION) -j3";
-			buildConfigurationList = 1FFDF393106FC0F700680DE2 /* Build configuration list for PBXLegacyTarget "openpivot" */;
+/* Begin PBXNativeTarget section */
+		1F0A7AE610A713B7005E6F80 /* openpivot */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1F0A7AFC10A713DA005E6F80 /* Build configuration list for PBXNativeTarget "openpivot" */;
 			buildPhases = (
+				1F0A7AE410A713B7005E6F80 /* Sources */,
+				1F0A7AE510A713B7005E6F80 /* Frameworks */,
 			);
-			buildToolPath = /usr/bin/make;
-			buildWorkingDirectory = "/Users/rpechayr/Development/beanstalk-youki/trunk/openpivot/debug";
+			buildRules = (
+			);
 			dependencies = (
 			);
 			name = openpivot;
-			passBuildSettingsInEnvironment = 1;
 			productName = openpivot;
+			productReference = 1F0A7AE710A713B7005E6F80 /* openpivot */;
+			productType = "com.apple.product-type.tool";
 		};
-/* End PBXLegacyTarget section */
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		08FB7793FE84155DC02AAC07 /* Project object */ = {
@@ -128,10 +142,20 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1FFDF38C106FC0D900680DE2 /* openpivot */,
+				1F0A7AE610A713B7005E6F80 /* openpivot */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1F0A7AE410A713B7005E6F80 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		1DEB923608733DC60010E9CD /* Debug */ = {
@@ -160,22 +184,33 @@
 			};
 			name = Release;
 		};
-		1FFDF38D106FC0D900680DE2 /* Debug */ = {
+		1F0A7AE910A713B7005E6F80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
 				PRODUCT_NAME = openpivot;
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
-		1FFDF38E106FC0D900680DE2 /* Release */ = {
+		1F0A7AEA10A713B7005E6F80 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = /usr/local/bin;
+				PREBINDING = NO;
 				PRODUCT_NAME = openpivot;
 				ZERO_LINK = NO;
 			};
@@ -193,11 +228,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1FFDF393106FC0F700680DE2 /* Build configuration list for PBXLegacyTarget "openpivot" */ = {
+		1F0A7AFC10A713DA005E6F80 /* Build configuration list for PBXNativeTarget "openpivot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1FFDF38D106FC0D900680DE2 /* Debug */,
-				1FFDF38E106FC0D900680DE2 /* Release */,
+				1F0A7AE910A713B7005E6F80 /* Debug */,
+				1F0A7AEA10A713B7005E6F80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

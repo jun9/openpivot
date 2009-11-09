@@ -81,7 +81,6 @@ void XMLConfigReader::configureRowsSettings()
     string idValue = (const char*)xmlGetProp (currentRow,BAD_CAST "id");
 
     Settings & settings = mContext->getSettings();
-    cout << "Adding Row " << idValue<< endl;
     settings.addRowForKey(idValue);
   }
 }
@@ -101,18 +100,6 @@ void XMLConfigReader::configureDefaultAccumulation()
       settings.setDefaultAccumulation(typ);
     }
   }
-  // for (int i = 0; i < size ; ++i)
-  //   {
-  //     xmlNode* currentRow = mXpathObj->nodesetval->nodeTab[i];
-  //     if (!currentRow || currentRow->type != XML_ELEMENT_NODE)
-  //       continue;
-  //     //get Id of new column to create
-  //     string idValue = (const char*)xmlGetProp (currentRow,BAD_CAST "id");
-  // 
-  //     Settings & settings = mContext->getSettings();
-  //     cout << "Adding Row " << idValue<< endl;
-  //     settings.setDefaultAccumulation(idValue);
-  //   }
 }
 
 /*

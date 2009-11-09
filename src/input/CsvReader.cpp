@@ -11,9 +11,24 @@
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
+
+#define SPACES " \t\r\n"
+using std::string;
+
+inline string trim_right (const string & s, const string & t = SPACES)
+{ 
+  string d (s); 
+  string::size_type i (d.find_last_not_of (t));
+  if (i == string::npos)
+    return "";
+  else
+   return d.erase (d.find_last_not_of (t) + 1) ; 
+}  // end of trim_right
+  
+  
 namespace op
 {
-  #define __DEFAULT_BUFFER_SIZE__ 1024
+  #define __DEFAULT_BUFFER_SIZE__ 255
   
   using namespace std;
   
@@ -26,7 +41,7 @@ namespace op
     mPositions(),
     mHeadersMap()
   {
-    //mHeadersMap.set_empty_key(NULL);
+    //mHeadersMap.set_empty_key(string());
   }
   
   CsvReader::~CsvReader()
@@ -70,6 +85,7 @@ namespace op
     mPositions.clear();
     mNbTokens = 1;
     mPositions.push_back(0);
+   
     for (int i = 0; i < __DEFAULT_BUFFER_SIZE__; ++i) {
       if (mCurrentBuffer[i] == '\n') // FIXME: will probably not work on windows ...
         break;
@@ -84,7 +100,6 @@ namespace op
   
   bool CsvReader::processLine()
   {
-    //cerr << "processing line " << endl;
     string key = buildKey();
     Settings & settings = mContext->getSettings();
     PivotTable & table = mContext->getPivotTable();
@@ -96,7 +111,6 @@ namespace op
       string field = iter->first;
       Accumulator* acc = table.getAccumulatorForKeyAndEntry(key,field);
       int pos =  mHeadersMap.find(field)->second;
-      
       string val = getFromTokens(pos);
       try 
       {
@@ -112,14 +126,12 @@ namespace op
   
   bool CsvReader::processHeader()
   {
-    cerr << "CsvReader::processHeader" << endl;
     checkHeaders();
     for (int j = 0; j < mNbTokens; ++j)
     {
       string field = getFromTokens(j);
       //if field is a column :
       Settings & settings = mContext->getSettings();
-      cerr << j << " Checking : " << field << endl;
       if (settings.hasColumn(field) || settings.hasRow(field)) 
       {
         //cerr << "Adding : " << field.c_str() << endl;
