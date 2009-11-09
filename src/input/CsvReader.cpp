@@ -41,7 +41,7 @@ namespace op
     mPositions(),
     mHeadersMap()
   {
-    //mHeadersMap.set_empty_key(string());
+    mHeadersMap.set_empty_key(string());
   }
   
   CsvReader::~CsvReader()

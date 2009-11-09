@@ -95,8 +95,8 @@ private:
   * @brief convenience TypeDef
   */
   //typedef dense_hash_map<const char*,int,Utils::Hash,Utils::eqstr> ReverseHeadersMap;
-  //typedef google::dense_hash_map<string,int,Utils::Hash > ReverseHeadersMap;
-  typedef std::map<string,int>  ReverseHeadersMap;
+  typedef google::dense_hash_map<string,int,Utils::HashString > ReverseHeadersMap;
+  //typedef std::map<string,int>  ReverseHeadersMap;
   
 private:
   char mSeparator;
