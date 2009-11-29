@@ -1,9 +1,13 @@
 #ifndef PIVOTTABLE_H_UCDSE4RV
 #define PIVOTTABLE_H_UCDSE4RV
-//#include <google/sparse_hash_map> // 2 bits overhead per entry ! but quite slow
+
+#ifdef NO_GOOGLE_HASH
+#include <map>
+#else
 #include <google/dense_hash_map> // very fast but memory intensive
+#endif
+
 #include <string>
-//#include <map>
 #include "Accumulator.h"
 #include "openpivotlib/Utils.h"
 
@@ -17,10 +21,15 @@ class PivotTable
 public:
   PivotTable ();
   ~PivotTable ();
-  //typedef std::map<string,Accumulator*> EntriesMap;
+#ifdef NO_GOOGLE_HASH
+  typedef std::map<string,Accumulator*> EntriesMap;
+  typedef std::map<string,EntriesMap*> Container;
+#else
   typedef google::dense_hash_map<string,Accumulator*,Utils::Hash > EntriesMap;
-  //typedef std::map<string,EntriesMap*> Container;
   typedef google::dense_hash_map<string,EntriesMap*,Utils::Hash > Container;
+#endif
+  
+  
   Accumulator* getAccumulatorForKeyAndEntry(const string &, const string &);
   typedef std::pair<Container::const_iterator,Container::const_iterator> IterEntriesPair;
   IterEntriesPair iterEntries() const;

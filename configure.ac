@@ -20,6 +20,13 @@ AC_PATH_GOOGLE_SPARSE_HASH
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
 
+
+# Figure out where hash_map lives and also hash_fun.h (or stl_hash_fun.h).
+# This also tells us what namespace hash code lives in.
+AC_CXX_STL_HASH
+AC_CXX_STL_HASH_FUN
+
+AC_CXX_STL_NAMESPACE
 # Checks for library functions.
 
 AC_SUBST([AM_CXXFLAGS])

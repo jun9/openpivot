@@ -3,8 +3,6 @@
 #define SETTINGS_H_I5PA6WWL
 
 #include <string>
-//#include <google/dense_hash_map>
-//#include <google/dense_hash_set>
 
 #include "Utils.h"
 #include <vector>

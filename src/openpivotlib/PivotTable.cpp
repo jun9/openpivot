@@ -3,7 +3,9 @@ namespace op
 {
   PivotTable::PivotTable ()
   {
+#ifndef NO_GOOGLE_HASH
     mDocumentMap.set_empty_key(string());
+#endif
   }
 
   PivotTable::~PivotTable ()
@@ -19,7 +21,9 @@ namespace op
     if (finder == mDocumentMap.end())
     {
       entries = new EntriesMap();
+#ifndef NO_GOOGLE_HASH
       entries->set_empty_key(string());
+#endif
       mDocumentMap[key] = entries;
     } else
       entries = finder->second;

@@ -19,8 +19,7 @@ Settings::Settings():
   mRowsMap(),
   mRows()
 {
-  //mColumns.set_empty_key(NULL);
-  //mRowsMap.set_empty_key(NULL);
+
 }
 
 Settings::~Settings()

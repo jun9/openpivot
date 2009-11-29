@@ -83,3 +83,8 @@ AC_DEFUN([AC_PATH_LIBXML2], [
 	AC_SUBST(LIBXML2_LIBS)
 
 ])
+m4_include([m4/stl_hash.m4])
+m4_include([m4/stl_hash_fun.m4])
+m4_include([m4/stl_namespace.m4])
+m4_include([m4/namespaces.m4])
+

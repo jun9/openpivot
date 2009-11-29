@@ -11,10 +11,14 @@
 #define CSVREADER_H_LBXGKD1B
 #include <vector>
 #include <string>
-#include <map>
+
 #include "openpivotlib/OpenPivotContext.h"
+
+#ifdef NO_GOOGLE_HASH
+#include <map>
+#else
 #include <google/dense_hash_map>
-#include <ext/hash_map>
+#endif
 
 namespace op
 {
@@ -95,8 +99,12 @@ private:
   * @brief convenience TypeDef
   */
   //typedef dense_hash_map<const char*,int,Utils::Hash,Utils::eqstr> ReverseHeadersMap;
+#ifdef NO_GOOGLE_HASH
+  typedef std::map<string,int>  ReverseHeadersMap;
+#else
   typedef google::dense_hash_map<string,int,Utils::HashString > ReverseHeadersMap;
-  //typedef std::map<string,int>  ReverseHeadersMap;
+#endif
+
   
 private:
   char mSeparator;

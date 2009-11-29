@@ -41,7 +41,9 @@ namespace op
     mPositions(),
     mHeadersMap()
   {
+#ifndef NO_GOOGLE_HASH
     mHeadersMap.set_empty_key(string());
+#endif
   }
   
   CsvReader::~CsvReader()

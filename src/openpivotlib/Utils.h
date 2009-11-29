@@ -2,11 +2,13 @@
 #define UTILS_H_2K54SQXP
 #include <string>
 #include <google/dense_hash_map>
-#include <ext/hash_map>
+//#include <ext/hash_map>
+#include HASH_FUN_H    // defined in config.h
 
 namespace op
 {
-  using __gnu_cxx::hash;
+
+  using SPARSEHASH_HASH;
   using std::string;
   /**
   * @brief enum representing aggregation type
