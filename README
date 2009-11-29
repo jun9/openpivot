@@ -1,0 +1,18 @@
+
+Requirements : 
+- libxml2
+- google sparse hash available at http://code.google.com/p/google-sparsehash/
+
+
+Instructions to build openpivot executable
+
+- create directory to build it, e.g <debug>
+- copy conf.sh into <debug>
+- from openpivot root directory, first run autoreconf
+- if autoreconf says something, then runs the command suggested in the output
+- go to <debug>, edit, conf.sh and replace paths of libxml2 and google sparse by appropriate ones
+
+- run : sh conf.sh
+- make
+
+You can go to example/ to test on small data set and run : ../debug/src configsample.xml sampledata.csv output.csv
