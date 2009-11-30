@@ -259,6 +259,7 @@
 				GCC_MODEL_TUNING = G5;
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = "openpivot-Xcode";
+				USER_HEADER_SEARCH_PATHS = "../src//**";
 			};
 			name = Release;
 		};
@@ -280,6 +281,7 @@
 				KEEP_PRIVATE_EXTERNS = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = (
+					"-DNO_GOOGLE_HASH",
 					"-DHAVE_CONFIG_H",
 					"$(OTHER_CFLAGS)",
 				);
@@ -296,6 +298,16 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/Developer/SDKs/MacOSX10.6.sdk/usr/include/libxml2,
+					"../../google-sparsehash-read-only/src//**",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-DNO_GOOGLE_HASH",
+					"-DHAVE_CONFIG_H",
+					"$(OTHER_CFLAGS)",
+				);
+				OTHER_LDFLAGS = "-lxml2";
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
 			};

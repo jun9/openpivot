@@ -113,6 +113,7 @@ private:
   OpenPivotContext *mContext;
   string mFileName;
   vector<int> mPositions;
+  vector<int> mRowsIndices;
   ReverseHeadersMap mHeadersMap;
 
   

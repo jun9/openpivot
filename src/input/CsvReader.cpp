@@ -15,20 +15,20 @@
 #define SPACES " \t\r\n"
 using std::string;
 
-inline string trim_right (const string & s, const string & t = SPACES)
-{ 
-  string d (s); 
-  string::size_type i (d.find_last_not_of (t));
-  if (i == string::npos)
-    return "";
-  else
-   return d.erase (d.find_last_not_of (t) + 1) ; 
-}  // end of trim_right
-  
+//inline string trim_right (const string & s, const string & t = SPACES)
+//{ 
+//  string d (s); 
+//  string::size_type i (d.find_last_not_of (t));
+//  if (i == string::npos)
+//    return "";
+//  else
+//   return d.erase (d.find_last_not_of (t) + 1) ; 
+//}  // end of trim_right
+//  
   
 namespace op
 {
-  #define __DEFAULT_BUFFER_SIZE__ 255
+  #define __DEFAULT_BUFFER_SIZE__ 512
   
   using namespace std;
   
@@ -39,6 +39,7 @@ namespace op
     mContext(0),
     mFileName() ,
     mPositions(),
+    mRowsIndices(),
     mHeadersMap()
   {
 #ifndef NO_GOOGLE_HASH
@@ -92,7 +93,7 @@ namespace op
       if (mCurrentBuffer[i] == '\n') // FIXME: will probably not work on windows ...
         break;
       if (mCurrentBuffer[i] == mSeparator) {
-        mCurrentBuffer[i] = 0;
+        mCurrentBuffer[i] = '\0';
         mNbTokens++;
         mPositions.push_back(i+1);
       }
@@ -143,6 +144,15 @@ namespace op
           cerr << "problem here " << endl;
         }
       }
+    }
+    
+    Settings & settings = mContext->getSettings();
+    Settings::RowIteratorPair itPair = settings.iterRows();
+    for (std::list<string>::const_iterator it = itPair.first; it != itPair.second; ++it  )
+    {
+      string field = *it;
+      int indice = mHeadersMap.find(field)->second;
+      mRowsIndices.push_back(indice);
     }
     return true;
   }
@@ -199,21 +209,16 @@ namespace op
   string CsvReader::getFromTokens(int pos) const
   {
     int position = mPositions[pos];
-    string field = &mCurrentBuffer[position];
-    return field;
+    return &mCurrentBuffer[position];
   }
   
   string CsvReader::buildKey()
   {
-    Settings & settings = mContext->getSettings();
-    string key = "";
-    Settings::RowIteratorPair itPair = settings.iterRows();
-    for (std::list<string>::const_iterator it = itPair.first; it != itPair.second; ++it  )
+    string key = string();
+    for (vector<int>::const_iterator iterRows = mRowsIndices.begin(); iterRows != mRowsIndices.end(); ++ iterRows)
     {
-      string field = *it;
-      int indice = mHeadersMap.find(field)->second;
-      string el = getFromTokens(indice);
-      key += el + ";";
+      key += getFromTokens(*iterRows);
+      key+= ";";
     }
     return key;
   }
