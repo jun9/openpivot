@@ -18,6 +18,7 @@ int main (int argc, char * const argv[]) {
     reader.setInput(argv[2]);
     reader.setContext(&context);
     reader.read();
+    reader.clean();
     
     op::CsvWriter writer;
     writer.setOutput(argv[3]);

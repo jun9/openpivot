@@ -4,7 +4,7 @@ namespace op
   PivotTable::PivotTable ()
   {
 #ifndef NO_GOOGLE_HASH
-    mDocumentMap.set_empty_key(string());
+    mDocumentMap.set_empty_key(0);
 #endif
   }
 
@@ -13,7 +13,7 @@ namespace op
 
   }
 
-  Accumulator* PivotTable::getAccumulatorForKeyAndEntry(const string & key, const string & entryKey)
+  Accumulator* PivotTable::getAccumulatorForKeyAndEntry(const char* key, const char* entryKey)
   {
     //std::cout << "Key " << key << std::endl;
     Container::const_iterator finder = mDocumentMap.find(key);
@@ -22,12 +22,18 @@ namespace op
     {
       entries = new EntriesMap();
 #ifndef NO_GOOGLE_HASH
-      entries->set_empty_key(string());
+      entries->set_empty_key(0);
 #endif
-      mDocumentMap[key] = entries;
-    } else
+      size_t theSize = strlen(key);
+      char* newKey = new char[theSize];
+      newKey[0] = '\0';
+      strcpy(newKey, key);
+      mDocumentMap[newKey] = entries;
+    } else {
       entries = finder->second;
-    EntriesMap::const_iterator finderEntry = entries->find(entryKey.c_str());
+    }
+      
+    EntriesMap::const_iterator finderEntry = entries->find(entryKey);
     Accumulator* result = 0;
     if (finderEntry == entries->end())
     {
@@ -44,15 +50,16 @@ namespace op
     for (Container::iterator iter = mDocumentMap.begin(); iter != mDocumentMap.end(); ++iter)
     {
       entries = iter->second;
-      for (EntriesMap::iterator iterEntries = entries->begin(); iterEntries != entries->end(); ++iterEntries)
+      for (EntriesMap::iterator theIterEntries = entries->begin(); theIterEntries != entries->end(); ++theIterEntries)
       {
-        if (iterEntries->second)
+        if (theIterEntries->second)
         {
-          delete iterEntries->second;
-          iterEntries->second = 0;
+          delete theIterEntries->second;
+          theIterEntries->second = 0;
         }
       }
       delete entries;
+      delete[] iter->first;
       iter->second = 0;
     }
   }

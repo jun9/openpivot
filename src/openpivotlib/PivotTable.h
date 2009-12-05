@@ -7,14 +7,14 @@
 #include <google/dense_hash_map> // very fast but memory intensive
 #endif
 
-#include <string>
+//#include <string>
 #include "Accumulator.h"
 #include "openpivotlib/Utils.h"
 
 namespace op
 {
 
-using std::string;
+  //using std::string;
 
 class PivotTable
 {
@@ -22,15 +22,15 @@ public:
   PivotTable ();
   ~PivotTable ();
 #ifdef NO_GOOGLE_HASH
-  typedef std::map<string,Accumulator*> EntriesMap;
-  typedef std::map<string,EntriesMap*> Container;
+  typedef std::map<const char*,Accumulator*,Utils::StrComp> EntriesMap;
+  typedef std::map<const char*,EntriesMap*,Utils::StrComp> Container;
 #else
-  typedef google::dense_hash_map<string,Accumulator*,Utils::Hash > EntriesMap;
-  typedef google::dense_hash_map<string,EntriesMap*,Utils::Hash > Container;
+  typedef google::dense_hash_map<const char*,Accumulator*,Utils::Hash, Utils::eqstr > EntriesMap;
+  typedef google::dense_hash_map<const char*,EntriesMap*,Utils::Hash , Utils::eqstr> Container;
 #endif
   
   
-  Accumulator* getAccumulatorForKeyAndEntry(const string &, const string &);
+  Accumulator* getAccumulatorForKeyAndEntry(const char*, const char* );
   typedef std::pair<Container::const_iterator,Container::const_iterator> IterEntriesPair;
   IterEntriesPair iterEntries() const;
   void cleanup();

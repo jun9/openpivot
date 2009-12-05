@@ -11,20 +11,23 @@ namespace op
 {
   bool Utils::eqstr::operator()(const char* s1, const char* s2) const
   {
-    std::cout << "Comparing strings :" << std::endl << std::flush;
-    std::cout<< s1 << std::endl<< std::flush;
-    std::cout<< s2 << std::endl << std::flush;
+    //std::cout << "Comparing strings :" << std::endl << std::flush;
+//    std::cout<< s1 << std::endl<< std::flush;
+//    std::cout<< s2 << std::endl << std::flush;
+    //return strcmp(s1, s2) == 0;
+    //
     bool is = (s1 == s2) || (s1 && s2 && strcmp(s1, s2) == 0);
-    std::cout <<"result : " << is << std::endl << std::flush;
+    //std::cout <<"result : " << is << std::endl << std::flush;
     return is;
   }
 
-  size_t Utils::HashString::operator()(const string & s) const
+  size_t Utils::HashString::operator()(const char* s) const
   {
-    return hash<const char *>() (s.c_str());
+    size_t res = hash<const char *>() (s);
+    return res;
   }
 
-  aggregation_type Utils::toAggType(const string & str)
+  aggregation_type Utils::toAggType(const string &  str)
   {
     if (str == "average") return average;
     if (str == "sum") return sum;
@@ -38,16 +41,16 @@ namespace op
   double MyAtof(const char *, bool & );
   double MyStrtod(const char *, char **, bool & );
   
-  double Utils::toDouble(const string & str)
+  double Utils::toDouble(const char*  str)
   {
     //std::istringstream i(str);
     bool status = true;
     
     //double res = MyAtof(str.c_str(),status);
-    double res = MyAtof(str.c_str(), status);
+    double res = MyAtof(str, status);
     if (!status)
     {
-      string message = "Error, string " + str + " is not convertible to a double";
+      string message = "Error, string " + string(str) + " is not convertible to a double";
       throw message;
     }
     return res;

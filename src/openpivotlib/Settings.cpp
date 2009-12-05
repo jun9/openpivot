@@ -27,22 +27,22 @@ Settings::~Settings()
   
 }
 
-bool Settings::hasColumn(const string & field) const
+bool Settings::hasColumn(const char*  field) const
 {
-  ColumnMap::const_iterator finder = mColumns.find(field.c_str());
+  ColumnMap::const_iterator finder = mColumns.find(field);
   return finder != mColumns.end();
 }
 
-bool Settings::hasRow(const string & field) const
+bool Settings::hasRow(const char* field) const
 {
   //std::cerr << "dealing with in HasRow " << field << " currently " << mRowsMap.size() << std::endl;
-  RowsContainer::const_iterator finder = mRowsMap.find(field.c_str());
+  RowsContainer::const_iterator finder = mRowsMap.find(field);
   return finder != mRowsMap.end();
 }
   
-void Settings::addColumnWithAggregTypeForKey(const string & field, aggregation_type type)
+void Settings::addColumnWithAggregTypeForKey(const char* field, aggregation_type type)
 {
-  ColumnMap::iterator finder = mColumns.find(field.c_str());
+  ColumnMap::iterator finder = mColumns.find(field);
   if (finder == mColumns.end())
   {
     AggregationColumn* col = new AggregationColumn();
@@ -51,7 +51,7 @@ void Settings::addColumnWithAggregTypeForKey(const string & field, aggregation_t
     else
       col->setAggregationType(type);
     col->setId(field);  
-    mColumns.insert(std::make_pair(field.c_str(), col));
+    mColumns.insert(std::make_pair(field, col));
   }
 }
 
@@ -60,10 +60,10 @@ void Settings::setDefaultAccumulation(aggregation_type type)
   mDefautlAggregation = type;
 }
 
-AggregationColumn* Settings::getAggregationColumn(const string & name)
+AggregationColumn* Settings::getAggregationColumn(const char*  name)
 {
   AggregationColumn* col = 0;
-  ColumnMap::iterator finder = mColumns.find(name.c_str());
+  ColumnMap::iterator finder = mColumns.find(name);
   if (finder != mColumns.end())
   {
     col = finder->second;
@@ -71,10 +71,10 @@ AggregationColumn* Settings::getAggregationColumn(const string & name)
   return col;
 }
 
-void Settings::addRowForKey(const string & name)
+void Settings::addRowForKey(const char* name)
 {
   //std::cerr <<"trying adding  row " << name;
-  if (  mRowsMap.insert(name.c_str()).second)
+  if (  mRowsMap.insert(name).second)
   {
     //std::cerr <<" success" ;
     mRows.push_back(name);

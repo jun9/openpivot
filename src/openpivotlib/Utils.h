@@ -28,8 +28,8 @@ namespace op
     /**
     * @brief Method to convert string to aggregation typ
     */
-    static aggregation_type toAggType(const string &) ;
-    static double toDouble(const string &) ;
+    static aggregation_type toAggType(const string&) ;
+    static double toDouble(const char* ) ;
     /**
     * @brief Utility struct for hash maps
     */
@@ -43,7 +43,7 @@ namespace op
     */
     struct HashString
     {
-      size_t operator()(const string & ) const;
+      size_t operator()(const char*  ) const;
     };
     typedef HashString Hash;
     

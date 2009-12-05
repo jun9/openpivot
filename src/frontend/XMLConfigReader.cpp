@@ -54,16 +54,17 @@ void XMLConfigReader::configureColsSettings()
     if (!currentCol || currentCol->type != XML_ELEMENT_NODE)
       continue;
     //get Id of new column to create
-    string idValue = (const char*)xmlGetProp (currentCol,BAD_CAST "id");
+    const char* idValue = (const char*)xmlGetProp (currentCol,BAD_CAST "id");
     aggregation_type typ = def;
     if (xmlHasProp(currentCol, BAD_CAST "accumulation"))
     {
-      string accType = (const char*)xmlGetProp (currentCol,BAD_CAST "accumulation");
+      const char* accType = (const char*)xmlGetProp(currentCol,BAD_CAST "accumulation");
       typ = Utils::toAggType(accType);
     }
     Settings & settings = mContext->getSettings();
     settings.addColumnWithAggregTypeForKey(idValue,typ);
   }
+  xmlXPathFreeObject(mXpathObj);
 }
 
 
@@ -78,11 +79,12 @@ void XMLConfigReader::configureRowsSettings()
     if (!currentRow || currentRow->type != XML_ELEMENT_NODE)
       continue;
     //get Id of new column to create
-    string idValue = (const char*)xmlGetProp (currentRow,BAD_CAST "id");
+    const char* idValue = (const char*)xmlGetProp (currentRow,BAD_CAST "id");
 
     Settings & settings = mContext->getSettings();
     settings.addRowForKey(idValue);
   }
+  xmlXPathFreeObject(mXpathObj);
 }
 
 void XMLConfigReader::configureDefaultAccumulation()
@@ -95,11 +97,13 @@ void XMLConfigReader::configureDefaultAccumulation()
     if (currentRow && currentRow->type == XML_ELEMENT_NODE)
     {
       Settings & settings = mContext->getSettings();
-      string val = (const char*)xmlGetProp (currentRow,BAD_CAST "value");
+      const char* val = (const char*)xmlGetProp (currentRow,BAD_CAST "value");
       aggregation_type typ = Utils::toAggType(val);
       settings.setDefaultAccumulation(typ);
+      free((void*)val);
     }
   }
+  xmlXPathFreeObject(mXpathObj);
 }
 
 /*

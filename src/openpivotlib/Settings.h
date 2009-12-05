@@ -2,7 +2,7 @@
 #ifndef SETTINGS_H_I5PA6WWL
 #define SETTINGS_H_I5PA6WWL
 
-#include <string>
+//#include <string>
 
 #include "Utils.h"
 #include <vector>
@@ -11,7 +11,7 @@
 #include <map>
 namespace op {
 
-using std::string;
+//using std::string;
 using std::list;
 
 class AggregationColumn;
@@ -19,7 +19,7 @@ class AggregationColumn;
 class Settings 
 {
 public:
-  typedef list<string>::const_iterator RowIterator;
+  typedef list<const char*>::const_iterator RowIterator;
   typedef std::pair<RowIterator,RowIterator> RowIteratorPair; 
   typedef std::map<const char*,AggregationColumn*,Utils::StrComp>::const_iterator ColsMapIterator;
   typedef std::pair<ColsMapIterator,ColsMapIterator> ColsMapIteratorPair;
@@ -27,13 +27,13 @@ public:
   Settings();
   ~Settings();
   
-  void addColumnWithAggregTypeForKey(const string &, aggregation_type);
-  void addRowForKey(const string &);
+  void addColumnWithAggregTypeForKey(const char* , aggregation_type);
+  void addRowForKey(const char* );
   void setDefaultAccumulation(aggregation_type);
   
-  bool hasColumn(const string &) const;
-  bool hasRow(const string &) const;
-  AggregationColumn* getAggregationColumn(const string &);
+  bool hasColumn(const char* ) const;
+  bool hasRow(const char* ) const;
+  AggregationColumn* getAggregationColumn(const char* );
   
   RowIteratorPair iterRows() const;
   ColsMapIteratorPair iterColumns() const;
@@ -46,7 +46,7 @@ private:
   aggregation_type mDefautlAggregation;
   ColumnMap mColumns;
   RowsContainer mRowsMap;
-  list<string> mRows;
+  list<const char*> mRows;
 };
 }
 

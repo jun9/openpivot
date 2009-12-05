@@ -10,7 +10,7 @@
 #ifndef CSVREADER_H_LBXGKD1B
 #define CSVREADER_H_LBXGKD1B
 #include <vector>
-#include <string>
+//#include <string>
 
 #include "openpivotlib/OpenPivotContext.h"
 
@@ -23,7 +23,7 @@
 namespace op
 {
 using std::vector;
-using std::string;
+  //using std::string;
 using std::map;
 /**
 * @brief Main input file reader.
@@ -44,7 +44,7 @@ public:
   /**
   *@brief To set the input
   */
-  void setInput(const string &);
+  void setInput(const char* );
   
   /**
   *@brief To set the context
@@ -55,6 +55,11 @@ public:
   * file and building of pivot table
   */
   bool read();
+  
+  /**
+   *@brief clean allocated memory
+   */
+  void clean();
   
 private:
   
@@ -80,7 +85,7 @@ private:
   * @brief called at each line (except headers), build keys
   * based on rows required in Settings instance
   */
-  string buildKey();
+  const char* buildKey();
   
   /**
   * @brief check if headers require in settings are here
@@ -93,16 +98,16 @@ private:
   * @brief to get particular field in current Buffer according to 
   * separator
   */
-  string getFromTokens(int) const;
+  const char* getFromTokens(int) const;
   
   /**
   * @brief convenience TypeDef
   */
   //typedef dense_hash_map<const char*,int,Utils::Hash,Utils::eqstr> ReverseHeadersMap;
 #ifdef NO_GOOGLE_HASH
-  typedef std::map<string,int>  ReverseHeadersMap;
+  typedef std::map<const char*,int,Utils::StrComp>  ReverseHeadersMap;
 #else
-  typedef google::dense_hash_map<string,int,Utils::HashString > ReverseHeadersMap;
+  typedef google::dense_hash_map<const char*,int,Utils::Hash, Utils::eqstr > ReverseHeadersMap;
 #endif
 
   
@@ -110,8 +115,8 @@ private:
   char mSeparator;
   int mNbTokens;
   char *mCurrentBuffer;
+  const char* mFileName;
   OpenPivotContext *mContext;
-  string mFileName;
   vector<int> mPositions;
   vector<int> mRowsIndices;
   ReverseHeadersMap mHeadersMap;

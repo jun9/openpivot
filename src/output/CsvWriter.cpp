@@ -36,24 +36,46 @@ namespace op
        cout << "While opening a file an error is encountered" << endl;
     }
     PivotTable & table = mContext->getPivotTable();
-    string buffer;
+    size_t size = 256;
+    size_t currentSize = 0;
+    char* buffer = new char[size];
+    buffer[0] = '\0';
     Settings &settings = mContext->getSettings();
     
     Settings::RowIteratorPair itPair = settings.iterRows();
-    for (std::list<string>::const_iterator it = itPair.first; it != itPair.second; ++it  )
+    for (std::list<const char*>::const_iterator it = itPair.first; it != itPair.second; ++it  )
     {
-      string field = *it;
-      //int indice = mHeadersMap.find(field)->second;
-      //string el = getFromTokens(indice);
-      buffer += field + ";";
+      const char* field = *it;
+      currentSize += strlen(field) + 1;
+      if (currentSize >= size)
+      {
+        size *= 2; 
+        char* newBuff = new char [size];
+        newBuff[0] = '\0';
+        strcpy(newBuff, buffer);
+        delete[] buffer;
+        buffer = newBuff;
+      }
+      strcat(buffer, field);
+      strcat(buffer, ";");
     }
     
     Settings::ColsMapIteratorPair iterPair = settings.iterColumns();
     for (Settings::ColsMapIterator iter = iterPair.first; iter != iterPair.second; ++iter)
     {
-      string field = iter->first;
-      buffer += field;
-      buffer += ";";
+      const char* field = iter->first;
+      currentSize += strlen(field) + 1;
+      if (currentSize >= size)
+      {
+        size *= 2;
+        char* newBuff = new char [size];
+        newBuff[0] = '\0';
+        strcpy(newBuff, buffer);
+        delete[] buffer;
+        buffer = newBuff;
+      }
+      strcat(buffer, field);
+      strcat(buffer, ";");
     }
     stream << buffer << std::endl;
     
@@ -61,8 +83,26 @@ namespace op
     PivotTable::IterEntriesPair iterEntriesPair = table.iterEntries();
     for (;iterEntriesPair.first != iterEntriesPair.second; ++iterEntriesPair.first)
     {
-      buffer = string();
-      buffer += iterEntriesPair.first->first;
+      if (buffer)
+        delete [] buffer;
+      size = 256;
+      currentSize = 0;
+      buffer = new char[size];
+      buffer[0] = '\0';
+      //buffer = string();
+      const char* field = iterEntriesPair.first->first;
+      currentSize += strlen(field);
+      if (currentSize >= size)
+      {
+        size *= 2;
+        char* newBuff = new char [size];
+        newBuff[0] = '\0';
+        strcpy(newBuff, buffer);
+        delete[] buffer;
+        buffer = newBuff;
+      }
+      strcat(buffer, field);
+      //buffer += iterEntriesPair.first->first;
       stream << buffer ;
       PivotTable::EntriesMap theMap = *((iterEntriesPair.first)->second);
       for (PivotTable::EntriesMap::const_iterator iterAccu = theMap.begin(); iterAccu != theMap.end(); ++iterAccu)
@@ -76,7 +116,7 @@ namespace op
       }
       stream << std::endl;
     }
-    
+    delete [] buffer;
     return true;
   }
   
