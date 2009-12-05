@@ -97,8 +97,8 @@ namespace op
     mNbTokens = 1;
     mPositions.push_back(0);
     bool hasTokens = false;
-    for (int i = 0; i < __DEFAULT_BUFFER_SIZE__; ++i) {
-      if (mCurrentBuffer[i] == '\0') // FIXME: will probably not work on windows ...
+    for (int i = 0; i < __DEFAULT_BUFFER_SIZE__; ++i) {g
+      if (mCurrentBuffer[i] == '\0')
         break;
       if (mCurrentBuffer[i] == mSeparator) {
         hasTokens = true;
