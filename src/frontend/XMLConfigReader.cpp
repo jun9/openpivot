@@ -4,44 +4,46 @@
 #include <iostream>
 
 namespace op {
-  using namespace std;
-  XMLConfigReader::XMLConfigReader():
-    mDoc(0),
-    mInputFile(),
-    mContext(0)
-  {
-  }
+using namespace std;
+XMLConfigReader::XMLConfigReader():
+  mDoc(0),
+  mInputFile(),
+  mContext(0)
+{
+}
 
-  XMLConfigReader::~XMLConfigReader() 
-  {
-  }
+XMLConfigReader::~XMLConfigReader() 
+{
+}
 
-  void XMLConfigReader::setInputFile(const string & name)
-  {
-    mInputFile = name;
-  }
+void XMLConfigReader::setInputFile(const string & name)
+{
+  mInputFile = name;
+}
 
-  bool XMLConfigReader::read() 
+bool XMLConfigReader::read() 
+{
+  LIBXML_TEST_VERSION
+  mDoc = xmlReadFile(mInputFile.c_str(),0,0);
+  if (!mDoc)
   {
-    LIBXML_TEST_VERSION
-    mDoc = xmlReadFile(mInputFile.c_str(),0,0);
-    if (!mDoc)
-    {
-      std::cerr << "Failed to parse " << mInputFile << endl;
-    }
-    mXpathCtx = xmlXPathNewContext(mDoc);
-    configureDefaultAccumulation();
-    configureColsSettings();
-    configureRowsSettings();
-  /*
-  * this is to debug memory for regression tests
-  */
-    xmlXPathFreeContext(mXpathCtx);
-    xmlMemoryDump();
-
-    return true;
+    std::cerr << "Failed to parse " << mInputFile << endl;
   }
-//static  void  print_xpath_nodes(xmlNodeSetPtr nodes, FILE* output);
+  mXpathCtx = xmlXPathNewContext(mDoc);
+  configureDefaultAccumulation();
+  configureColsSettings();
+  configureRowsSettings();
+/*
+* this is to debug memory for regression tests
+*/
+  xmlXPathFreeObject(mXpathObj);
+  xmlXPathFreeContext(mXpathCtx);
+  xmlMemoryDump();
+
+  return true;
+}
+  
+
 void XMLConfigReader::configureColsSettings() 
 {
   mXpathObj = xmlXPathEvalExpression(BAD_CAST "/problem/columnlist/col",mXpathCtx);
@@ -64,7 +66,6 @@ void XMLConfigReader::configureColsSettings()
     Settings & settings = mContext->getSettings();
     settings.addColumnWithAggregTypeForKey(idValue,typ);
   }
-  xmlXPathFreeObject(mXpathObj);
 }
 
 
@@ -84,7 +85,6 @@ void XMLConfigReader::configureRowsSettings()
     Settings & settings = mContext->getSettings();
     settings.addRowForKey(idValue);
   }
-  xmlXPathFreeObject(mXpathObj);
 }
 
 void XMLConfigReader::configureDefaultAccumulation()
@@ -103,44 +103,7 @@ void XMLConfigReader::configureDefaultAccumulation()
       free((void*)val);
     }
   }
-  xmlXPathFreeObject(mXpathObj);
 }
 
-/*
-void print_xpath_nodes(xmlNodeSetPtr nodes, FILE* output) {
-  xmlNodePtr cur;
-  int size;
-  int i;
-
-  assert(output);
-  size = (nodes) ? nodes->nodeNr : 0;
-
-  fprintf(output, "Result (%d nodes):\n", size);
-  for(i = 0; i < size; ++i) {
-    assert(nodes->nodeTab[i]);
-
-    if(nodes->nodeTab[i]->type == XML_NAMESPACE_DECL) {}
-    else if(nodes->nodeTab[i]->type == XML_ELEMENT_NODE) {
-      cur = nodes->nodeTab[i];   	    
-      if(cur->ns) {}
-       else {
-        fprintf(output, "= element node \"%s\"\n", 
-          cur->name);
-        fprintf(output,"Sons names : \n");
-        xmlNodePtr curr_son = 0;
-        for (curr_son = cur->children; curr_son; curr_son = curr_son->next)
-        {
-          if (curr_son->type == XML_ELEMENT_NODE) {
-            printf("son name: %s\n", curr_son->name);
-          }
-        }
-      }
-    } else {
-      cur = nodes->nodeTab[i];    
-      fprintf(output, "= node \"%s\": type %d\n", cur->name, cur->type);
-    }
-  }
-}
-*/
 
 }

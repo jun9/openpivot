@@ -45,7 +45,22 @@ namespace op
     {
       size_t operator()(const char*  ) const;
     };
-    typedef HashString Hash;
+    
+    
+    struct HashFun
+    {
+      size_t operator()(const char* str) const 
+      {
+        int val = 0;
+        int i = 0;
+        while (str[i] != '\0')
+        {
+          val += str[i++];
+        }
+        return SPARSEHASH_HASH<int>()(val);
+      }
+    };
+    typedef HashFun Hash;
     
     /**
     *@brief comparator for maps

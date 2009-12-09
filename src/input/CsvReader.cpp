@@ -97,16 +97,18 @@ namespace op
     mNbTokens = 1;
     mPositions.push_back(0);
     bool hasTokens = false;
-    for (int i = 0; i < __DEFAULT_BUFFER_SIZE__; ++i) {g
-      if (mCurrentBuffer[i] == '\0')
+    char* bufferBuffer = &mCurrentBuffer[0];
+    for (int i = 0; i < __DEFAULT_BUFFER_SIZE__; ++i) {
+      char & currentChar = *bufferBuffer;
+      if (currentChar == '\0')
         break;
-      if (mCurrentBuffer[i] == mSeparator) {
+      if (currentChar == mSeparator) {
         hasTokens = true;
-        mCurrentBuffer[i] = '\0';
+        currentChar = '\0';
         mNbTokens++;
         mPositions.push_back(i+1);
       }
-      
+      bufferBuffer++;
     }
     if (!hasTokens)
       throw Exception ("This line does not have tokens");
@@ -115,8 +117,8 @@ namespace op
   bool CsvReader::processLine()
   {
     const char* key = buildKey(); //delete if not used
-    Settings & settings = mContext->getSettings();
-    PivotTable & table = mContext->getPivotTable();
+    static Settings & settings = mContext->getSettings();
+    static PivotTable & table = mContext->getPivotTable();
     Settings::ColsMapIteratorPair iterPair = settings.iterColumns();
     
     //iterate over all columns to enrich all corresponding Accumulators

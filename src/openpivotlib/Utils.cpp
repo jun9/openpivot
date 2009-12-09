@@ -26,6 +26,7 @@ namespace op
     size_t res = hash<const char *>() (s);
     return res;
   }
+  
 
   aggregation_type Utils::toAggType(const string &  str)
   {
