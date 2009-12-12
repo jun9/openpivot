@@ -17,6 +17,7 @@
 		1F0A7BD310A7232D005E6F80 /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A7BC510A7232D005E6F80 /* Settings.cpp */; };
 		1F0A7BD410A7232D005E6F80 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A7BC710A7232D005E6F80 /* Utils.cpp */; };
 		1F0A7BD510A7232D005E6F80 /* CsvWriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F0A7BCA10A7232D005E6F80 /* CsvWriter.cpp */; };
+		1F8EF5BA10D3C704003EC4CB /* OptionParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F8EF5B910D3C704003EC4CB /* OptionParser.cpp */; };
 		8DD76F6A0486A84900D96B5E /* openpivot-Xcode.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* openpivot-Xcode.1 */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		1F0A7BC810A7232D005E6F80 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1F0A7BCA10A7232D005E6F80 /* CsvWriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CsvWriter.cpp; sourceTree = "<group>"; };
 		1F0A7BCB10A7232D005E6F80 /* CsvWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CsvWriter.h; sourceTree = "<group>"; };
+		1F8EF5B810D3C704003EC4CB /* OptionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionParser.h; sourceTree = "<group>"; };
+		1F8EF5B910D3C704003EC4CB /* OptionParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OptionParser.cpp; sourceTree = "<group>"; };
 		8DD76F6C0486A84900D96B5E /* openpivot-Xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "openpivot-Xcode"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6859E8B029090EE04C91782 /* openpivot-Xcode.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = "openpivot-Xcode.1"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				1F0A7BB510A7232D005E6F80 /* main.cpp */,
+				1F8EF5B810D3C704003EC4CB /* OptionParser.h */,
+				1F8EF5B910D3C704003EC4CB /* OptionParser.cpp */,
 			);
 			name = app;
 			path = ../src/app;
@@ -221,6 +226,7 @@
 				1F0A7BD310A7232D005E6F80 /* Settings.cpp in Sources */,
 				1F0A7BD410A7232D005E6F80 /* Utils.cpp in Sources */,
 				1F0A7BD510A7232D005E6F80 /* CsvWriter.cpp in Sources */,
+				1F8EF5BA10D3C704003EC4CB /* OptionParser.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

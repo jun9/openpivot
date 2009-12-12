@@ -1,6 +1,7 @@
 bin_PROGRAMS = openpivot
 openpivot_SOURCES = \
 	app/main.cpp \
+	app/OptionParser.cpp \
 	frontend/XMLConfigReader.cpp \
 	input/CsvReader.cpp \
 	output/CsvWriter.cpp \
