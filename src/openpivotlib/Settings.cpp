@@ -10,7 +10,7 @@
 #include "Settings.h"
 #include "AggregationColumn.h"
 #include <iostream>
-namespace op
+namespace openpivot
 {
   
 Settings::Settings():
@@ -92,4 +92,4 @@ Settings::ColsMapIteratorPair Settings::iterColumns() const
 {
   return std::make_pair(mColumns.begin(), mColumns.end());
 }
-} /* op */
+} /* openpivot */

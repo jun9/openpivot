@@ -3,7 +3,7 @@
 
 #include "openpivotlib/Utils.h"
 
-namespace op
+namespace openpivot
 {
   
 class Accumulator
@@ -34,5 +34,5 @@ private:
   double mSquarredSum;
   Method mMethod;
 };
-} /* op */
+} /* openpivot */
 #endif /* end of include guard: ACCUMULATOR_H_KG5GC13U */

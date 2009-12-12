@@ -11,7 +11,7 @@
 #include "Accumulator.h"
 #include "openpivotlib/Utils.h"
 
-namespace op
+namespace openpivot
 {
 
   //using std::string;
@@ -39,5 +39,5 @@ private:
   Container mDocumentMap;
 };
 
-} /* op */
+} /* openpivot */
 #endif /* end of include guard: PIVOTTABLE_H_UCDSE4RV */

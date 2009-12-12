@@ -2,7 +2,7 @@
 #include "CsvWriter.h"
 #include "openpivotlib/PivotTable.h"
 #include "openpivotlib/AggregationColumn.h"
-namespace op
+namespace openpivot
 {
   using namespace std;
   

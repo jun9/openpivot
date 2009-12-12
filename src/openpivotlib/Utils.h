@@ -5,7 +5,7 @@
 #include HASH_FUN_H    // defined in config.h
 #include <cstring>
 
-namespace op
+namespace openpivot
 {
 
   using SPARSEHASH_HASH;
@@ -35,7 +35,17 @@ namespace op
     */
     struct eqstr 
     {
-      bool operator()(const char*, const char *) const;
+      bool operator()(const char* s1, const char * s2) const
+      {
+        //std::cout << "Comparing strings :" << std::endl << std::flush;
+        //    std::cout<< s1 << std::endl<< std::flush;
+        //    std::cout<< s2 << std::endl << std::flush;
+        //return strcmp(s1, s2) == 0;
+        //
+        bool is = (s1 == s2) || (s1 && s2 && strcmp(s1, s2) == 0);
+        //std::cout <<"result : " << is << std::endl << std::flush;
+        return is;
+      }
     };
     
     /**
@@ -52,10 +62,10 @@ namespace op
       size_t operator()(const char* str) const 
       {
         int val = 0;
-        int i = 0;
-        while (str[i] != '\0')
+        const char* current = &str[0];
+        while (*current != '\0')
         {
-          val += str[i++];
+          val += *(++current);
         }
         return SPARSEHASH_HASH<int>()(val);
       }
@@ -95,17 +105,7 @@ namespace op
   
   
   
-} /* op */
+} /* openpivot */
 
-// namespace std                                                                                 
-// {                                                                                             
-//   template<> struct hash< std::string >                                                       
-//   {                                                                                           
-//     size_t operator()( const std::string& x ) const                                           
-//     {                                                                                         
-//       return hash< const char* >()( x.c_str() );                                              
-//     }                                                                                         
-//   };                                                                                          
-// }
 
 #endif /* end of include guard: UTILS_H_2K54SQXP */

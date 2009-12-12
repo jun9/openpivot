@@ -9,7 +9,7 @@
 #include <list>
 #include <set>
 #include <map>
-namespace op {
+namespace openpivot {
 
 //using std::string;
 using std::list;
@@ -48,6 +48,6 @@ private:
   RowsContainer mRowsMap;
   list<const char*> mRows;
 };
-}
+} /*openpivot*/
 
  #endif /* end of include guard: AGGREGATIONCOLUMN_H_UC9VVJXI */

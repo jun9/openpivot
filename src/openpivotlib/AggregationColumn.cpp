@@ -9,7 +9,7 @@
 
 #include "AggregationColumn.h"
 
-namespace op
+namespace openpivot
 {
   
   AggregationColumn::AggregationColumn ():

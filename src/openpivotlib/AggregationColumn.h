@@ -12,7 +12,7 @@
 #include <string>
 #include "Settings.h"
 
-namespace op
+namespace openpivot
 {
 using std::string;
 
@@ -35,6 +35,6 @@ private:
   
 };
 
-} /* op */
+} /* openpivot */
 
  #endif /* end of include guard: AGGREGATIONCOLUMN_H_UC9VVJXI */

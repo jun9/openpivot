@@ -14,9 +14,15 @@ AC_DEFUN([AC_PATH_GOOGLE_SPARSE_HASH], [
 	    # extend the compiler and linker flags according to the path set
 		echo includes : ${GOOGLE_SPARSE_INCLUDES}
 		AM_CXXFLAGS="$AM_CXXFLAGS -I${GOOGLE_SPARSE_INCLUDES}"
-		dnl AC_CHECK_HEADERS(google/dense_hash_set,,
-			dnl	[ AC_MSG_ERROR([google/dense_hash_set was not found or was not usable, google sparse hash headers are required ! or disable it]) ]
-			dnl	)
+		ac_save_CFLAGS="$CFLAGS"
+		ac_save_CPPFLAGS="$CPPFLAGS"
+	
+		CPPFLAGS="$GOOGLE_SPARSE_INCLUDES $CPPFLAGS"
+	  AC_CHECK_HEADERS(google/type_traits.h,,
+			[ AC_MSG_ERROR([google/type_traits.h was not found or was not usable, google sparse hash headers are required ! or disable it]) ]
+			)
+			
+  		CPPFLAGS="$ac_save_CPPFLAGS"
 	fi	
 	AC_SUBST(GOOGLE_SPARSE_INCLUDES)
 ])

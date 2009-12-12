@@ -7,9 +7,9 @@
 #include <stdlib.h>
 
 
-namespace op
+namespace openpivot
 {
-  bool Utils::eqstr::operator()(const char* s1, const char* s2) const
+/*  bool Utils::eqstr::operator()(const char* s1, const char* s2) const
   {
     //std::cout << "Comparing strings :" << std::endl << std::flush;
 //    std::cout<< s1 << std::endl<< std::flush;
@@ -19,7 +19,7 @@ namespace op
     bool is = (s1 == s2) || (s1 && s2 && strcmp(s1, s2) == 0);
     //std::cout <<"result : " << is << std::endl << std::flush;
     return is;
-  }
+  }*/
 
   size_t Utils::HashString::operator()(const char* s) const
   {
@@ -199,5 +199,5 @@ namespace op
   {
     return MyStrtod(str, NULL, status);
   }
-}
+} /*openpivot*/
 

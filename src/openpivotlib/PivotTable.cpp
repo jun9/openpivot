@@ -1,5 +1,5 @@
 #include "PivotTable.h" 
-namespace op
+namespace openpivot 
 {
   PivotTable::PivotTable ()
   {
@@ -69,4 +69,4 @@ namespace op
     return std::make_pair(mDocumentMap.begin(),mDocumentMap.end());
   }
   
-  } /* op */
+  } /* openpivot */

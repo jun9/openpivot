@@ -1,5 +1,5 @@
 #include "OpenPivotContext.h"
-namespace op
+namespace openpivot 
 {
   OpenPivotContext::OpenPivotContext ():
     mSettings(),
@@ -13,4 +13,4 @@ namespace op
     
   }
   
-} /* op */
+} /* openpivot */

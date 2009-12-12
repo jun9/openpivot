@@ -17,7 +17,7 @@
 //using std::string;
 
   
-namespace op
+namespace openpivot
 {
   #define __DEFAULT_BUFFER_SIZE__ 4096
   
@@ -303,4 +303,4 @@ namespace op
     }
   }
   
-} /* op */
+} /* openpivot */

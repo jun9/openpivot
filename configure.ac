@@ -3,7 +3,6 @@
 
 
 
-AC_PREREQ(2.61)
 AC_INIT([openpivot], [0.0.1], [rpechayr@gmail.com])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 #AC_CONFIG_SRCDIR([src/app/main.cpp])

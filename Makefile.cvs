@@ -1,0 +1,5 @@
+all:
+	aclocal --force
+	autoconf --force
+	autoheader --force
+	automake --add-missing

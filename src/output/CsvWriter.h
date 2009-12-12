@@ -2,7 +2,7 @@
 #define CSVWRITER_H_UUXGVCCB
 
 #include "openpivotlib/OpenPivotContext.h"
-namespace op
+namespace openpivot
 {
   
 class CsvWriter

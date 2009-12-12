@@ -1,7 +1,7 @@
 #include "Accumulator.h"
 #include <math.h>
 #include <iostream>
-namespace op
+namespace openpivot
 {
   Accumulator::Accumulator ():
     mNbEntries(0),

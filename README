@@ -8,9 +8,8 @@ Instructions to build openpivot executable
 
 - create directory to build it, e.g <debug>
 - copy conf.sh into <debug>
-- from openpivot root directory, first run autoreconf
-- if autoreconf says something, then runs the command suggested in the output
-- go to <debug>, edit, conf.sh and replace paths of libxml2 and google sparse by appropriate ones
+- from openpivot root directory, first run make -f Makefile.csv
+- go to <debug>, edit conf.sh and replace paths of libxml2 and google sparse by appropriate ones
 
 - run : sh conf.sh
 - make

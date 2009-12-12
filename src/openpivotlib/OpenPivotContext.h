@@ -4,7 +4,7 @@
 #include "Settings.h"
 #include "PivotTable.h"
 
-namespace op
+namespace openpivot
 {
   /**
   *@brief Object containning all data needed for an OpenPivot instance
@@ -32,6 +32,6 @@ namespace op
   
   inline Settings & OpenPivotContext::getSettings() { return mSettings;}
   inline PivotTable & OpenPivotContext::getPivotTable() { return mTable;}
-} /* op */
+} /* openpivot */
 
 #endif /* end of include guard: OPENPIVOTCONTEXT_H_KDF33K5S */

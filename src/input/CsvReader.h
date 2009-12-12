@@ -20,7 +20,7 @@
 #include <google/dense_hash_map>
 #endif
 
-namespace op
+namespace openpivot
 {
 using std::vector;
   //using std::string;
@@ -123,5 +123,5 @@ private:
 
   
 };
-} /* op */
+} /* openpivot */
 #endif /* end of include guard: CSVREADER_H_LBXGKD1B */

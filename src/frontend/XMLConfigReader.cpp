@@ -3,7 +3,7 @@
 #include <libxml/xpathInternals.h>
 #include <iostream>
 
-namespace op {
+namespace openpivot {
 using namespace std;
 XMLConfigReader::XMLConfigReader():
   mDoc(0),
@@ -106,4 +106,4 @@ void XMLConfigReader::configureDefaultAccumulation()
 }
 
 
-}
+} /*openpivot*/

@@ -6,7 +6,7 @@
 #include <libxml/tree.h>
 #include <libxml/xpath.h>
 #include "openpivotlib/OpenPivotContext.h"
-namespace op {
+namespace openpivot {
 
 using std::string;
 
@@ -44,5 +44,5 @@ inline void XMLConfigReader::setContext(OpenPivotContext * context)
  {
    mContext = context;
  }
-}
+} /*openpivot*/
 #endif /* end of include guard: XMLCONFIGREADER_H_H4DKFCED */
